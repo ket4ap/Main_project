@@ -88,7 +88,7 @@ class Enemy:
 
     
 
-class Enemy_boss:
+class Enemy_boss(Enemy):
     pass
 
 #########################################################END OF CLASSES######################################################################
@@ -97,10 +97,7 @@ class Enemy_boss:
 
 
 
-##########################################################LEVELS#######################################################################
-
-GG = Main_character()
-
+##########################################################FUNCTIONS#######################################################################
 
 def level_addition():
 
@@ -117,9 +114,9 @@ def level_addition():
             diapason = 99
             numeral_1 :int = randint(0, diapason)
             numeral_2 :int = randint(0, diapason)
-            
+
             while (numeral_2 + numeral_1 > diapason + 1):
-                numeral_2 = randint(1, 999)
+                numeral_2 = randint(1, diapason)
 
             print(numeral_1, " + ", numeral_2, " =  ?")
             calculate :int = numeral_1 + numeral_2
@@ -147,9 +144,9 @@ def level_addition():
         diapason = 99
         numeral_1 :int = randint(0, diapason)
         numeral_2 :int = randint(0, diapason)
-            
-        while (numeral_2 + numeral_1 > 1000):
-            numeral_2 = randint(1, 999)
+
+        while (numeral_2 + numeral_1 > diapason):
+            numeral_2 = randint(1, diapason)
 
         print(numeral_1, " + ", numeral_2, " =  ?")
         calculate :int = numeral_1 + numeral_2
@@ -166,15 +163,154 @@ def level_addition():
         if (enemy_boss.health <= 0):
             enemy_boss.Die()
             boss_level_complete = True
+def level_subtraction():
+    level_complete = False
+    num_level = 0
+
+    for num_level in range(1):
+
+        num_level += 1
+        enemy = Enemy()
+
+        while (level_complete == False):
+
+            diapason = 99
+            numeral_1: int = randint(0, diapason)
+            numeral_2: int = randint(0, diapason)
+
+            while (numeral_1 - numeral_2 < 0):
+                numeral_2 = randint(1, diapason - numeral_1)
+
+            print(numeral_1, " - ", numeral_2, " =  ?")
+            calculate: int = numeral_1 - numeral_2
+            answer = int(input())
+            print("Твоё решение: ", numeral_1, " - ", numeral_2, " =  ", answer)
+
+            if (answer == calculate):
+                GG.attack()
+                print("Правильно, вы наносите урон ", GG.damage, "!")
+            if (answer != calculate):
+                enemy.attack()
+                print("Неверно, вы получаете урон ", enemy.damage, "!")
+
+            if (enemy.health <= 0):
+                enemy.Die()
+                level_complete = True
+                print("Вы завершили ", num_level, "уровень")
+
+    print("Вы завершили все уровни, впереди лишь босс!!!")
+    enemy_boss = Enemy()
+    boss_level_complete = False
+
+    while (boss_level_complete == False):
+
+        diapason = 99
+        numeral_1: int = randint(0, diapason)
+        numeral_2: int = randint(0, diapason)
+
+        while (numeral_2 - numeral_1 < 0):
+            numeral_2 = randint(1, diapason - numeral_2)
+
+        print(numeral_1, " - ", numeral_2, " =  ?")
+        calculate: int = numeral_1 - numeral_2
+        answer = int(input())
+        print("Твоё решение: ", numeral_1, " - ", numeral_2, " =  ", answer)
+
+        if (answer == calculate):
+            GG.attack()
+            print("Правильно, вы наносите урон ", GG.damage, "!")
+        if (answer != calculate):
+            enemy_boss.attack()
+            print("Неверно, вы получаете урон ", enemy_boss.damage, "!")
+
+        if (enemy_boss.health <= 0):
+            enemy_boss.Die()
+            boss_level_complete = True
+def level_multiplication():
+    level_complete = False
+    num_level = 0
+
+    for num_level in range(1):
+
+        num_level += 1
+        enemy = Enemy()
+
+        while (level_complete == False):
+
+            diapason = 99
+            numeral_1: int = randint(0, diapason // 2)
+            numeral_2: int = randint(0, diapason)
+
+            while (numeral_1 * numeral_2 > diapason):
+                numeral_2 = randint(1, diapason)
+
+            print(numeral_1, " * ", numeral_2, " =  ?")
+            calculate: int = numeral_1 * numeral_2
+            answer = int(input())
+            print("Твоё решение: ", numeral_1, " * ", numeral_2, " =  ", answer)
+
+            if (answer == calculate):
+                GG.attack()
+                print("Правильно, вы наносите урон ", GG.damage, "!")
+            if (answer != calculate):
+                enemy.attack()
+                print("Неверно, вы получаете урон ", enemy.damage, "!")
+
+            if (enemy.health <= 0):
+                enemy.Die()
+                level_complete = True
+                print("Вы завершили ", num_level, "уровень")
+
+    print("Вы завершили все уровни, впереди лишь босс!!!")
+    enemy_boss = Enemy()
+    boss_level_complete = False
+
+    while (boss_level_complete == False):
+
+        diapason = 99
+        numeral_1: int = randint(0, diapason // 2)
+        numeral_2: int = randint(0, diapason)
+
+        while (numeral_2 - numeral_1 > diapason):
+            numeral_2 = randint(1, diapason)
+
+        print(numeral_1, " * ", numeral_2, " =  ?")
+        calculate: int = numeral_1 * numeral_2
+        answer = int(input())
+        print("Твоё решение: ", numeral_1, " * ", numeral_2, " =  ", answer)
+
+        if (answer == calculate):
+            GG.attack()
+            print("Правильно, вы наносите урон ", GG.damage, "!")
+        if (answer != calculate):
+            enemy_boss.attack()
+            print("Неверно, вы получаете урон ", enemy_boss.damage, "!")
+
+        if (enemy_boss.health <= 0):
+            enemy_boss.Die()
+            boss_level_complete = True
+
+###########################################################END OF FUNCTIONS#######################################################################
 
 
-level_addition()
-
-###########################################################END OF LEVELS#######################################################################
 
 
 
+###########################################################MAIN FUNCTIONS#######################################################################
 
+GG = Main_character()
+
+print("1 - сложение; 2- вычитание; 3- умножение")
+type = int(input())
+
+if type == 1:
+    level_addition()
+if type == 2:
+    level_subtraction()
+if type == 3:
+    level_multiplication()
+
+###########################################################END OF MAIN FUNCTIONS#######################################################################
 
 """"
 pygame.init()
